@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { getPopularMovies } from '../services/themoviedbAPI';
 import Loader from '../components/Loader/Loader';
 
@@ -28,15 +29,16 @@ export const HomePage = () => {
       {error && <p>Whoops, something went wrong: {error.message}</p>}
       {isLoading && <Loader />}
       <h1>Trending today</h1>
-      <ul>
-        {items.map(({ id, title, name }) => (
-          <li key={id}>
-            {/* <Link to={`/movies/${id}`} state={{ from: location }}> */}
-            {title || name}
-            {/* </Link> */}
-          </li>
-        ))}
-      </ul>
+      {!error && (
+        <ul>
+          {items.map(({ id, title, name }) => (
+            <li key={id}>
+              <Link to={`/movies/${id}`}>{title || name}</Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </main>
   );
 };
+// state={{ from: location }}
