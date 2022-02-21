@@ -5,7 +5,7 @@ import Loader from '../Loader/Loader';
 
 export const Reviews = () => {
   const { movieId } = useParams();
-  const [movieReviews, setMovieReviews] = useState(null);
+  const [movieReviews, setMovieReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -29,7 +29,7 @@ export const Reviews = () => {
     <>
       {error && <p>Whoops, something went wrong: {error.message}</p>}
       {isLoading && <Loader />}
-      {movieReviews ? (
+      {movieReviews.length > 0 ? (
         <ul>
           {movieReviews.map(({ id, author, content }) => (
             <li key={id}>

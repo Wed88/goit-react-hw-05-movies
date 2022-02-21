@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { HomePage, MovieItemPage } from 'pages';
+import { HomePage, MovieItemPage, MoviesPage } from 'pages';
 import { Layout } from 'components/Layout/Layout';
 import { Cast } from 'components/Cast/Cast';
 import { Reviews } from '../Reviews/Reviews';
@@ -9,7 +9,7 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route path="home" element={<HomePage />} />
-        <Route path="movies" element={<div>MoviesPage</div>} />
+        <Route path="movies" element={<MoviesPage />} />
         <Route path="movies/:movieId" element={<MovieItemPage />}>
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />

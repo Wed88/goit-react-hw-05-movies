@@ -28,10 +28,11 @@ export const MovieItemPage = () => {
 
   return (
     <main>
-      <Link to="/Home">Go back</Link>
       {error && <p>Whoops, something went wrong: {error.message}</p>}
       {isLoading && <Loader />}
+      <Link to="/Home">Go back</Link>
       {!error && <MovieItem movieItem={movieItem} />}
+      <br />
       <div>
         <ul>
           <h4>Iditional information</h4>
