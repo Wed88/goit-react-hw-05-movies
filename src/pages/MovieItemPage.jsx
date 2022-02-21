@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, Outlet, NavLink } from 'react-router-dom';
 import { getMovieById } from '../services/themoviedbAPI';
 import { MovieItem } from 'components/MovieItem/MovieItem';
 import Loader from '../components/Loader/Loader';
 
 export const MovieItemPage = () => {
   const { movieId } = useParams();
-  const [movieItem, setMovieItem] = useState([]);
+  const [movieItem, setMovieItem] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -28,9 +28,22 @@ export const MovieItemPage = () => {
 
   return (
     <main>
+      <Link to="/Home">Go back</Link>
       {error && <p>Whoops, something went wrong: {error.message}</p>}
       {isLoading && <Loader />}
       {!error && <MovieItem movieItem={movieItem} />}
+      <div>
+        <ul>
+          <h4>Iditional information</h4>
+          <li>
+            <NavLink to={'cast'}>Cast</NavLink>
+          </li>
+          <li>
+            <NavLink to={'reviews'}>Reviews</NavLink>
+          </li>
+        </ul>
+      </div>
+      <Outlet />
     </main>
   );
 };

@@ -18,3 +18,7 @@ export const Container = styled.div`
     margin-bottom: 15px;
   }
 `;
+
+export const Box = styled.div`
+  display: block;
+`;

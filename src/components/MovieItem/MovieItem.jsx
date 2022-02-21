@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { MovieCard, Image, Container } from './MovieItem.styled';
 
 export const MovieItem = ({ movieItem }) => {
@@ -29,12 +30,12 @@ export const MovieItem = ({ movieItem }) => {
           {release_date && <span>({release_date.slice(0, 4)})</span>}
         </h1>
         <p>User score: {Math.round((vote_average * 100) / 10)}%</p>
-        <h2>Overview</h2>
+        <h3>Overview</h3>
         <p>{overview}</p>
 
         {genres && (
           <>
-            <h2>Genres</h2>
+            <h3>Genres</h3>
             <ul>
               {movieItem.genres.map(genre => (
                 <li key={genre.id}>{genre.name}</li>
@@ -45,4 +46,8 @@ export const MovieItem = ({ movieItem }) => {
       </Container>
     </MovieCard>
   );
+};
+
+MovieItem.propTypes = {
+  movieItem: PropTypes.object.isRequired,
 };

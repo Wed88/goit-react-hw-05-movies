@@ -14,3 +14,10 @@ export const getMovieById = async movie_id => {
   );
   return response.data;
 };
+
+export const getMovieCast = async movie_id => {
+  const response = await axios(
+    `/movie/${movie_id}/credits?api_key=${API_KEY}&language=en-US`
+  );
+  return response.data;
+};

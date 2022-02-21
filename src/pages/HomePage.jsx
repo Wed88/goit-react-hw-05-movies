@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getPopularMovies } from '../services/themoviedbAPI';
-import { MovieList } from 'components/MoviesList/MoviesList';
+import { MoviesList } from 'components/MoviesList/MoviesList';
 import Loader from '../components/Loader/Loader';
 
 export const HomePage = () => {
@@ -26,10 +26,10 @@ export const HomePage = () => {
 
   return (
     <main>
-      {error && <p>Whoops, something went wrong: {error.message}</p>}
+      {error && <p>Whoops, something went wrong: {error}</p>}
       {isLoading && <Loader />}
       <h1>Trending today</h1>
-      {!error && <MovieList items={items} />}
+      {!error && <MoviesList items={items} />}
     </main>
   );
 };
