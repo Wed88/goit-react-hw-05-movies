@@ -34,10 +34,14 @@ export const Cast = () => {
         <List>
           {movieCast.map(({ id, profile_path, name, character }) => (
             <li key={id}>
-              <Image
-                src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
-                alt={name}
-              />
+              {profile_path ? (
+                <Image
+                  src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
+                  alt={name}
+                />
+              ) : (
+                <p>No photo</p>
+              )}
               <p>{name}</p>
               <p>Character: {character}</p>
             </li>
