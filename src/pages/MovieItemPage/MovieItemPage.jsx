@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link, Outlet, NavLink } from 'react-router-dom';
-import { getMovieById } from '../services/themoviedbAPI';
+import { useParams, Outlet, NavLink, useLocation } from 'react-router-dom';
+import { getMovieById } from '../../services/themoviedbAPI';
 import { MovieItem } from 'components/MovieItem/MovieItem';
-import Loader from '../components/Loader/Loader';
+import Loader from '../../components/Loader/Loader';
+import { FiCornerUpLeft } from 'react-icons/fi';
+import { Button } from './MovieItemPage.styled';
 
 export const MovieItemPage = () => {
   const { movieId } = useParams();
   const [movieItem, setMovieItem] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     async function fetchMovieItem() {
@@ -30,17 +33,24 @@ export const MovieItemPage = () => {
     <main>
       {error && <p>Whoops, something went wrong: {error.message}</p>}
       {isLoading && <Loader />}
-      <Link to="/Home">Go back</Link>
+      <Button to={location?.state?.from ?? '/'}>
+        <FiCornerUpLeft />
+        Go back
+      </Button>
       {!error && <MovieItem movieItem={movieItem} />}
       <br />
       <div>
         <ul>
           <h4>Iditional information</h4>
           <li>
-            <NavLink to={'cast'}>Cast</NavLink>
+            <NavLink to={'cast'} state={{ from: location?.state?.from }}>
+              Cast
+            </NavLink>
           </li>
           <li>
-            <NavLink to={'reviews'}>Reviews</NavLink>
+            <NavLink to={'reviews'} state={{ from: location?.state?.from }}>
+              Reviews
+            </NavLink>
           </li>
         </ul>
       </div>
