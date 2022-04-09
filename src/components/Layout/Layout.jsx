@@ -8,7 +8,7 @@ export const Layout = () => {
   return (
     <Wrapper>
       <Nav>
-        <Link to="/Home">Home</Link>
+        <Link to="/">Home</Link>
         <Link to="/Movies">Movies</Link>
       </Nav>
       <Outlet />

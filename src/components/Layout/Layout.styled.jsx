@@ -15,4 +15,7 @@ export const Link = styled(NavLink)`
   &.active {
     color: tomato;
   }
+   &:hover {
+    color: green;
+  }
 `;
